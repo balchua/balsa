@@ -148,3 +148,19 @@ Cleaning the raft volumes.
 2021-02-02T15:16:42.506+0800 [WARN]  raft: failed to get previous log: previous-index=4 last-index=2 error="log not found"
 2021-02-02T15:16:42.506+0800 [INFO]  raft: entering follower state: follower="Node at 127.0.0.1:9002 [Follower]" leader=127.0.0.1:9000
 ```
+
+### Setting values
+
+```
+$ ./pump.sh
+
+```
+
+This will send several curl requests to `/set?key=$i&value=$i`.  Setting values must only be done on the leader.
+
+If you send a set request to the follower, it will log 
+
+```console
+Set handler called
+2021/02/02 16:11:48 Not a leader, do nothing
+```
